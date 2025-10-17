@@ -47,7 +47,7 @@ Open the file directly in your browser, or run a local server:
 # Clone repository
 git clone https://github.com/DimasAkbarF/class-manager-guide.git
 cd class-manager-guide
-
+'''
 # Open in browser
 open index.html
 ````

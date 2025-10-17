@@ -1,6 +1,6 @@
 
 ```markdown
-# Class Manager – Panduan Pembayaran Uang Kas
+# class-manager-guide
 
 A simple web page that guides students through the class cash payment process.  
 Built with HTML, Tailwind CSS, and JavaScript — featuring a responsive layout and theme toggle (dark/light mode).
@@ -29,17 +29,6 @@ It explains how to log in, access the “Uang Kas” menu, pay via QRIS, and upl
 
 
 
- Project Structure
-```
-
-class-manager-guide/
-├── index.html
-└── README.md
-
-````
-
-
-
  Quick Start
 Open the file directly in your browser, or run a local server:
 
@@ -65,5 +54,5 @@ Developed by [Dimas Akbar](https://github.com/DimasAkbarF)
 
 License
 
-This project is licensed under the MIT License.
-Feel free to use, modify, and share.
+> "This project is licensed under the MIT License.
+Feel free to use, modify, and share."

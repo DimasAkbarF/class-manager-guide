@@ -32,11 +32,9 @@ It explains how to log in, access the “Uang Kas” menu, pay via QRIS, and upl
  Quick Start
 Open the file directly in your browser, or run a local server:
 
-```bash
 # Clone repository
 git clone https://github.com/DimasAkbarF/class-manager-guide.git
 cd class-manager-guide
-'''
 # Open in browser
 open index.html
 ````

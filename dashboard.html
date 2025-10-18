@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panduan Pembayaran Uang Kas | Class Manager</title>
+  <meta name="description" content="Panduan lengkap pembayaran uang kas kelas melalui website class.nuridwn.site. Login dengan NIM, bayar lewat QRIS, dan unggah bukti pembayaran dengan mudah.">
+  <meta name="keywords" content="kas kelas, uang kas, pembayaran kas, qris, transparansi keuangan kelas, class manager">
+  <meta name="author" content="Class Manager">
+  
+  <meta property="og:title" content="Panduan Pembayaran Uang Kas | Class Manager">
+  <meta property="og:description" content="Cara mudah bayar kas kelas lewat class.nuridwn.site — login pake NIM, scan QRIS, upload bukti, dan tunggu konfirmasi admin.">
+  <meta property="og:url" content="https://class.nuridwn.site">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://class.nuridwn.site/assets/banner.png">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="https://class.nuridwn.site/favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body { 
+      font-family: 'Inter', sans-serif; 
+      transition: background-color 0.3s, color 0.3s;
+    }
+.dark-mode {
+  background-color: #0f172a;
+  color: #e2e8f0;
+  background-image: linear-gradient(to bottom right, #111827, #1f2937, #1e1b4b);
+}
+
+.light-mode {
+  background-color: #f1f5f9;
+  color: #1e293b;
+  background-image: linear-gradient(to bottom right, #f8fafc, #e2e8f0, #c7d2fe);
+}
+
+    .info-box {
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .dark-mode .info-box {
+      background-color: #1e293b;
+      color: #e2e8f0;
+      border-color: #475569;
+    }
+    .light-mode .info-box {
+      background-color: #e2e8f0;
+      color: #1e293b;
+      border-color: #94a3b8;
+    }
+    /* btn-logout {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 50;
+    } */
+  </style>
+</head>
+<body class="dark-mode ">
+
+<button id="btn-logout" class="rounded-lg p-2 z-50 mt-4 top-6 right-6 bg-gray-800 text-white hover:bg-slate-600">Logout</button>
+<script src="asset/js/script.js"></script>
+
+
+
+
+<p id="user-info" class="justify-center text-center font-bold text-4xl mt-2"></p>
+
+<p id="user-info" class="justify-center text-center font-bold text-4xl mt-2"></p>
+  <button id="themeToggle" class="fixed top-6 right-6 p-3 rounded-lg bg-gray-800/60 backdrop-blur-xl dark:bg-slate-800 hover:bg-slate-600 transition shadow-lg z-50 ">
+    <svg id="sunIcon" class="w-5 h-5 text-slate-200 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+    </svg>
+    <svg id="moonIcon" class="w-5 h-5 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+    </svg>
+  </button>
+
+  <main class="max-w-4xl mx-auto px-6 py-12 sm:px-10 sm:py-16">
+    
+    <header class="mb-12">
+      <h1 class="text-3xl t sm:text-4xl font-bold mb-4">Panduan Pembayaran Uang Kas</h1>
+      <p class="text-lg opacity-80">
+        Website kas kelas kini tersedia di 
+        <a href="https://class.nuridwn.site" class="underline hover:no-underline" target="_blank">class.nuridwn.site</a>
+      </p>
+    </header>
+
+    <section class="mb-12 opacity-90">
+      <p class="mb-4">
+        Sistem pembayaran kas kelas dirancang untuk meningkatkan transparansi dan kemudahan dalam pengelolaan keuangan kelas. 
+        Anda dapat memantau kas pribadi, melihat tagihan, dan melakukan pembayaran langsung melalui website.
+      </p>
+      <p>
+        Login menggunakan NIM, akses menu Uang Kas, lalu bayar melalui QRIS. 
+        Setelah pembayaran, unggah bukti transaksi dan tunggu konfirmasi dari admin.
+      </p>
+    </section>
+
+    <hr class="border-slate-700 dark:border-slate-700 my-10">
+
+    <article class="space-y-10">
+
+      <section>
+        <h2 class="text-xl font-semibold mb-4">1. Login ke Website</h2>
+        <ul class="space-y-2 ml-6 list-disc opacity-90">
+          <li>Kunjungi <a href="https://class.nuridwn.site" target="_blank" class="underline hover:no-underline">class.nuridwn.site</a></li>
+          <li>Klik tombol Login</li>
+          <li>Masukkan NIM Anda untuk mengakses akun</li>
+        </ul>
+        <div class="mt-4 p-4 info-box rounded-xl border-l-2 bg-slate-600 shadow-2xl">
+          <p class="text-sm font-bold ">Jika belum memiliki akun, hubungi admin untuk pendaftaran.</p>
+          <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/failedNim.png">
+          <img class="mt-4 p-2 cursor-pointer " src="asset/img/failedNim.png" alt="">
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-4">2. Akses Menu x Uang Kas</h2>
+        <ul class="space-y-2 ml-6 list-disc opacity-90">
+          <li>Buka Dashboard kemudian pilih menu Uang Kas</li>
+          <li>Halaman ini menampilkan:
+            <ul class="ml-6 mt-2 space-y-1 list-disc">
+              <li>Total kas yang telah dibayar</li>
+              <li>Sisa tagihan yang belum dibayar</li>
+              <li>Progress kas kelas dalam persentase</li>
+              <li>Riwayat pembayaran lengkap</li>
+            </ul>
+          </li>
+        </ul>
+        <div class="mt-4 p-4 rounded-xl info-box  bg-slate-600 border-l-2 shadow-2xl">
+          <p class="font-bold text-lg ">Dashboard Menu:</p>
+          <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/dashboardfix.webp">
+          <img class="mt-4 p-4" src="asset/img/dashboardfix.webp" alt="">
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-4">3. Pembayaran Melalui QRIS</h2>
+        <ul class="space-y-2 ml-6 list-disc opacity-90">
+          <li>Scroll ke bagian Poster Pembayaran Kas</li>
+          <li>Scan kode QRIS menggunakan aplikasi e-wallet atau mobile banking</li>
+          <li>Pastikan nominal pembayaran sesuai dengan jumlah kas yang akan dibayar</li>
+          <li>Simpan bukti transaksi setelah pembayaran berhasil</li>
+        </ul>
+        <div class="mt-2 text-xli info-box p-4 rounded-xl bg-slate-600 border-l-2 shadow-2xl">
+          <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/qris.png">
+          <img src="asset/img/qris.png" alt="Qris">
+          </a>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-4 ">4. Unggah Bukti Pembayaran</h2>
+        <ul class="space-y-2 ml-6 list-disc opacity-90">
+          <li>Isi formulir Kirim Bukti Pembayaran dengan informasi berikut:
+            <ul class="ml-6 mt-2 space-y-1 list-disc">
+              <li>Nominal pembayaran</li>
+              <li>Tanggal pembayaran</li>
+              <li>Metode pembayaran (Transfer/Tunai)</li>
+            </ul>
+          </li>
+          <li>Pilih file bukti transfer kemudian klik Upload</li>
+          <li>Tekan tombol Kirim Bukti Pembayaran</li>
+          <li>Status awal akan pending tunggu konfirmasi admin </li>
+        </ul>
+         <div class="mt-2 text-xli info-box p-4 rounded-xl bg-slate-600 border-l-2 shadow-2xl">
+          <p>Before:</p>
+          <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/qris.png">
+          <img src="asset/img/bukti.png" alt="Qris">
+          </a>
+          <div class="mt-4 info-box rounded-xl bg-slate-700 ">
+            <p>After:</p>
+          <a href="">
+            <img src="asset/img/afterbukti.png" alt="">
+          </a>
+          </div>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-semibold mb-4">5. Konfirmasi dari Admin</h2>
+        <p class="opacity-90">
+          Setelah bukti pembayaran dikirim, admin akan melakukan verifikasi. 
+          Status pembayaran akan diperbarui secara otomatis setelah dikonfirmasi.
+        </p>
+      </section>
+
+<section class="p-6 info-box rounded-lg border-l-2 bg-slate-700 shadow-2xl mt-10">
+  <h3 class="font-bold mb-3 text-green-700 text-xl">NOTE:</h3>
+  <ul class="space-y-2 list-disc  ">
+    <li>Pastikan nominal pembayaran sesuai dengan tagihan.</li>
+    <li>Bayar uang kas tepat waktu untuk mencapai target bulanan.</li>
+    <li>Hubungi admin jika mengalami kendala atau data tidak terupdate.</li>
+    <li>Jika mengalami kendala saat melakukan pembayaran, silakan hubungi admin melalui WhatsApp yang tertera di bawah ini.</li>
+  </ul>
+
+  <!-- Tombol WhatsApp -->
+  <div class="mt-5">
+    <a href="https://wa.me/6287821055894?text=Halo%20Admin%2C%20saya%20ingin%20menanyakan%20tentang%20pembayaran%20kas." target="_blank" 
+       class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-lg shadow transition-all duration-200">
+      <!-- Ikon WhatsApp -->
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20.52 3.48A11.95 11.95 0 0012 0C5.37 0 0 5.37 0 12a11.9 11.9 0 001.64 6L0 24l6.28-1.64A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 21.75a9.74 9.74 0 01-4.95-1.33l-.36-.21-3.72.97.99-3.61-.24-.37A9.77 9.77 0 012.25 12c0-5.37 4.38-9.75 9.75-9.75 2.61 0 5.07 1.02 6.91 2.88A9.67 9.67 0 0121.75 12c0 5.37-4.38 9.75-9.75 9.75z"/>
+      </svg>
+      Hubungi Admin via WhatsApp
+    </a>
+  </div>
+</section>
+
+
+    </article>
+
+    <footer class="text-center font-bold text-sm opacity-60 mt-16">
+      © 2025 Class Manager.
+      <p>
+Dikelola bersama oleh komunitas kelas. Seluruh aktivitas dan pembayaran Anda sedang diawasi oleh bendahara kelas untuk menjaga ketertiban serta memastikan transparansi keuangan.</p>
+    </footer>
+
+  </main>
+
+<script src="asset/js/dashboard.js"></script>
+</body>
+</html>

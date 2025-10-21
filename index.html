@@ -5,11 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Masuk | Class Manager</title>
+  <style>
+         body {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+          
+    }
+  </style>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-indigo-950 text-white">
 
-  <div class="bg-gray-800/60 backdrop-blur-xl p-8 rounded-2xl shadow-2xl w-full max-w-md text-center border border-gray-700">
+  <div class=" bg-slate-900/70 backdrop-blur-xl p-8 rounded-2xl shadow-2xl w-full max-w-md text-center border-b border-slate-700 shadow-md">
     <div class="w-12 h-12 bg-yellow-500 text-gray-900 font-bold text-xl mx-auto flex items-center justify-center rounded-full mb-4">KK</div>
     <h2 class="text-sm tracking-[4px] text-yellow-400 mb-2">CLASS MANAGER</h2>
     <h1 class="text-2xl font-bold mb-2">Masuk ke Akun Anda</h1>
@@ -26,6 +32,26 @@
 
     <p class="text-gray-400 text-sm mt-6">Butuh akses? Hubungi bendahara atau admin kelas untuk mendapatkan akun.</p>
   </div>
+
+  <div id="toast-failure" 
+     class="fixed top-6 right-6 z-50 flex items-center p-4 rounded-xl shadow-2xl 
+            bg-red-900/70 backdrop-blur-xl border border-red-700 
+            text-red-200 transition-all duration-300 ease-out 
+            transform translate-x-[120%] opacity-0">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+    </svg>
+    
+    <span id="toast-message" class="text-sm font-medium">NIM yang Anda masukkan salah.</span>
+
+    <button onclick="hideToast()" class="ml-4 -mr-1 p-1 text-red-300 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-white/50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+</div>
+
 <script src="asset/js/script.js"></script>
 </body>
 </html>

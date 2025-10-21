@@ -1,10 +1,11 @@
-// script.js
+// asset/js/script.js
 
 // 1) load daftar user (hash) dari /data/users.json
 let daftarUsers = [];
 async function loadUsers() {
   try {
-    const res = await fetch('/data/users.json', {cache: "no-store"});
+    // Gunakan path relatif agar kompatibel di localhost / IP LAN
+    const res = await fetch('./data/users.json', { cache: "no-store" });
     if (!res.ok) throw new Error('Gagal memuat daftar user');
     daftarUsers = await res.json();
   } catch (err) {
@@ -22,14 +23,68 @@ async function sha256Hex(str) {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// 3) login handler
+// === Variabel dan Fungsi Toast ===
+// Variabel global untuk mengelola timer toast
+let toastTimer;
+
+/**
+ * Menampilkan notifikasi toast dengan pesan kustom.
+ * @param {string} message - Pesan yang ingin ditampilkan di toast.
+ */
+function showToast(message) {
+    const toast = document.getElementById('toast-failure');
+    if (!toast) return; // Guard clause jika elemen tidak ada
+    const toastMessage = document.getElementById('toast-message');
+
+    // Hapus timer sebelumnya jika ada (mencegah toast berkedip)
+    if (toastTimer) {
+        clearTimeout(toastTimer);
+    }
+
+    // Atur pesan kesalahan
+    if (toastMessage) toastMessage.textContent = message;
+
+    // Tampilkan toast dengan menganimasikannya masuk
+    toast.classList.remove('translate-x-[120%]', 'opacity-0');
+    toast.classList.add('translate-x-0', 'opacity-100');
+
+    // Atur timer untuk menyembunyikan toast secara otomatis setelah 3 detik
+    toastTimer = setTimeout(() => {
+        hideToast();
+    }, 3000); // 3000ms = 3 detik
+}
+
+/**
+ * Menyembunyikan notifikasi toast.
+ */
+function hideToast() {
+    const toast = document.getElementById('toast-failure');
+    if (!toast) return; // Guard clause
+
+    // Sembunyikan toast dengan menganimasikannya keluar
+    toast.classList.add('translate-x-[120%]', 'opacity-0');
+    toast.classList.remove('translate-x-0', 'opacity-100');
+
+    // Hapus timer jika ada
+    if (toastTimer) {
+        clearTimeout(toastTimer);
+        toastTimer = null;
+    }
+}
+// === Akhir Fungsi Toast ===
+
+
+// 3) login handler (SUDAH DIINTEGRASIKAN DENGAN TOAST)
 async function login() {
   const nimInput = document.getElementById('nim');
   const errEl = document.getElementById('error-message');
-  errEl.classList.add('hidden');
+  errEl.classList.add('hidden'); // Sembunyikan error inline dulu
+  
   const nim = nimInput.value.trim();
   if (!nim) {
-    errEl.textContent = 'Masukkan NIM.';
+    const pesan = 'Masukkan NIM.';
+    showToast(pesan); // Panggil Toast
+    errEl.textContent = pesan;
     errEl.classList.remove('hidden');
     return;
   }
@@ -38,7 +93,9 @@ async function login() {
   if (!daftarUsers.length) {
     await loadUsers();
     if (!daftarUsers.length) {
-      errEl.textContent = 'Daftar user tidak tersedia. Hubungi admin?Bendahara kelas.';
+      const pesan = 'Daftar user tidak tersedia. Hubungi admin/bendahara kelas.';
+      showToast(pesan); // Panggil Toast
+      errEl.textContent = pesan;
       errEl.classList.remove('hidden');
       return;
     }
@@ -50,11 +107,16 @@ async function login() {
   // cari kecocokan
   const found = daftarUsers.find(u => u.hash === hash);
   if (found) {
+    // BERHASIL
+    hideToast(); // Sembunyikan toast jika mungkin sedang tampil
     // simpan ke localStorage: hanya nama dan hash (bukan NIM mentah)
     localStorage.setItem('user', JSON.stringify({nama: found.nama, hash}));
-    window.location.href = 'dashboard.html';
+    window.location.href = './dashboard.html';
   } else {
-    errEl.textContent = '❌ NIM tidak ditemukan! Pastikan Anda terdaftar.';
+    // GAGAL
+    const pesan = '❌ NIM tidak ditemukan! Pastikan Anda terdaftar.';
+    showToast(pesan); // Panggil Toast
+    errEl.textContent = pesan;
     errEl.classList.remove('hidden');
   }
 }
@@ -82,9 +144,11 @@ function logout() {
   window.location.href = 'index.html';
 }
 
+// --- Event Listeners ---
+
 // ketika index.html diload, bisa pre-load daftar users supaya cepat
 if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' ) {
-  loadUsers();
+  document.addEventListener('DOMContentLoaded', loadUsers);
 }
 
 // kalau kita di dashboard, render data user
@@ -96,8 +160,11 @@ if (window.location.pathname.endsWith('dashboard.html')) {
 
     const user = checkAuthOrRedirect();
     if (!user) return;
+    
+    // Tampilkan nama user
     const el = document.getElementById('user-info');
-    if (el) el.textContent = `Halo, ${user.nama}`; // jangan tampilkan NIM menta
+    if (el) el.textContent = `Halo, ${user.nama}`; // jangan tampilkan NIM mentah
+    
     // sambungkan tombol logout
     const outBtn = document.getElementById('btn-logout');
     if (outBtn) outBtn.addEventListener('click', logout);

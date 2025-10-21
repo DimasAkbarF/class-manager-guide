@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -19,34 +20,66 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   
   <style>
-    body { 
-      font-family: 'Inter', sans-serif; 
-      transition: background-color 0.3s, color 0.3s;
+     body {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
+      transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
+      opacity: 0;
+      animation: fadeIn 0.8s ease-in-out forwards;
     }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
 .dark-mode {
   background-color: #0f172a;
-  color: #e2e8f0;
-  background-image: linear-gradient(to bottom right, #111827, #1f2937, #1e1b4b);
+  color: #cbd5e1;
+  background-image: radial-gradient(circle at 20% 20%, #1e3a8a40 0%, #0f172a 70%);
 }
+
 
 .light-mode {
   background-color: #f1f5f9;
-  color: #1e293b;
-  background-image: linear-gradient(to bottom right, #f8fafc, #e2e8f0, #c7d2fe);
+  color: #334155;
+  background-image: radial-gradient(circle at 30% 30%, #e2e8f0 0%, #f8fafc 60%);
 }
 
+    
+    /* Efek Glassmorphism untuk Info Box */
     .info-box {
-      transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
+
     .dark-mode .info-box {
-      background-color: #1e293b;
-      color: #e2e8f0;
-      border-color: #475569;
+      background-color: rgba(30, 41, 59, 0.5);
+      border-color: rgba(71, 85, 105, 0.6);
     }
+
     .light-mode .info-box {
-      background-color: #e2e8f0;
-      color: #1e293b;
-      border-color: #94a3b8;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-color: rgba(203, 213, 225, 0.8);
+    }
+
+    /* Styling untuk tombol Logout & Theme Toggle di header */
+    .header-actions {
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      display: flex;
+      gap: 0.75rem;
+      z-index: 50;
+    }
+
+    .dark-mode.header-actions button {
+      background-color: rgba(30, 41, 59, 0.5);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(71, 85, 105, 0.6);
+    }
+    .light-mode .header-actions button {
+      background-color: rgba(30, 41, 59, 0.5);
+      border: 2px solid rgba(71, 85, 105, 0.6);
     }
     /* btn-logout {
       position: fixed;
@@ -58,32 +91,60 @@
 </head>
 <body class="dark-mode ">
 
-<button id="btn-logout" class="rounded-lg p-2 z-50 mt-4 top-6 right-6 bg-gray-800 text-white hover:bg-slate-600">Logout</button>
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-slate-900/70 border-b border-slate-700 shadow-md">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
+    <!-- Judul -->
+    <h1 class="font-bold text-xl text-white tracking-wide">Class Manager</h1>
+
+    <!-- Tombol Tema & Logout -->
+    <div class="flex items-center gap-3">
+      <!-- Tombol Dark/Light -->
+      <button id="btn-toggle-theme"
+        class="flex items-center gap-2 bg-slate-800 text-white font-medium px-4 py-2 rounded-xl shadow-md transition-all duration-300 hover:bg-slate-600">
+        <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 3v1m0 16v1m9-9h1M3 12H2m15.364 6.364l.707.707M6.343 6.343l-.707-.707m12.728 0l.707-.707M6.343 17.657l-.707.707M12 8a4 4 0 100 8 4 4 0 000-8z" />
+        </svg>
+        <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+        </svg>
+        <span id="theme-label">Dark</span>
+      </button>
+
+      <!-- Tombol Logout -->
+      <button id="btn-logout"
+        class="flex items-center gap-2 bg-slate-800 text-white font-medium px-3 py-2 rounded-xl shadow-md transition-all duration-300 hover:bg-slate-700">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h5a2 2 0 012 2v1" />
+        </svg>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
+</header>
+
 <script src="asset/js/script.js"></script>
 
 
 
 
-<p id="user-info" class="justify-center text-center font-bold text-4xl mt-2"></p>
-
-<p id="user-info" class="justify-center text-center font-bold text-4xl mt-2"></p>
-  <button id="themeToggle" class="fixed top-6 right-6 p-3 rounded-lg bg-gray-800/60 backdrop-blur-xl dark:bg-slate-800 hover:bg-slate-600 transition shadow-lg z-50 ">
-    <svg id="sunIcon" class="w-5 h-5 text-slate-200 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-    </svg>
-    <svg id="moonIcon" class="w-5 h-5 text-slate-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-    </svg>
-  </button>
-
   <main class="max-w-4xl mx-auto px-6 py-12 sm:px-10 sm:py-16">
     
-    <header class="mb-12">
-      <h1 class="text-3xl t sm:text-4xl font-bold mb-4">Panduan Pembayaran Uang Kas</h1>
-      <p class="text-lg opacity-80">
-        Website kas kelas kini tersedia di 
-        <a href="https://class.nuridwn.site" class="underline hover:no-underline" target="_blank">class.nuridwn.site</a>
+<p id="user-info" class="justify-center text-center font-bold text-2xl mt-4 p-4"></p>
+    
+    <header class="text-center mb-16 bg-slate-900/70 backdrop-blur-lg info-box rounded-2xl p-2 mt-4 border-l-2 shadow-2xl">
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4 ">
+        Panduan Pembayaran Uang Kas
+      </h1>
+      <p class="text-lg opacity-80 max-w-2xl mx-auto">
+        Sistem pembayaran kas kelas yang modern dan transparan kini hadir untuk memudahkan Anda.
       </p>
+      <!-- <div id="user-info" class="font-bold text-2xl mt-4"></div> -->
     </header>
 
     <section class="mb-12 opacity-90">
@@ -104,12 +165,27 @@
       <section>
         <h2 class="text-xl font-semibold mb-4">1. Login ke Website</h2>
         <ul class="space-y-2 ml-6 list-disc opacity-90">
-          <li>Kunjungi <a href="https://class.nuridwn.site" target="_blank" class="underline hover:no-underline">class.nuridwn.site</a></li>
+          <li>Kunjungi <a href="https://class.nuridwn.site" target="_blank" class="underline hover:no-underline"></a></li>
+          <div class="mt-4 flex items-center gap-2 relative">
+  <input id="website-link" type="text" value="https://class.nuridwn.site" readonly
+    class="w-full bg-slate-600/20 border border-slate-600 rounded-lg px-3 py-1.5 text-sm truncate">
+<button id="copy-btn"
+  class="bg-slate-900/70 backdrop-blur-lg text-white font-semibold px-3 py-1.5 rounded-lg text-sm 
+         transition-colors duration-300 hover:bg-slate-800/90">
+  Salin
+</button>
+
+  <!-- Pesan notifikasi -->
+  <span id="copied-text" class="absolute right-0 -bottom-6 text-xs text-green-500 opacity-0 transition-opacity duration-300">
+    Tautan telah disalin!
+  </span>
+</div>
           <li>Klik tombol Login</li>
           <li>Masukkan NIM Anda untuk mengakses akun</li>
         </ul>
+        
         <div class="mt-4 p-4 info-box rounded-xl border-l-2 bg-slate-600 shadow-2xl">
-          <p class="text-sm font-bold ">Jika belum memiliki akun, hubungi admin untuk pendaftaran.</p>
+          <p class="text-sm font-bold ">Jika belum memiliki akun, hubungi admin/bendahara untuk pendaftaran.</p>
           <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/failedNim.png">
           <img class="mt-4 p-2 cursor-pointer " src="asset/img/failedNim.png" alt="">
           </a>
@@ -188,7 +264,7 @@
       </section>
 
 <section class="p-6 info-box rounded-lg border-l-2 bg-slate-700 shadow-2xl mt-10">
-  <h3 class="font-bold mb-3 text-green-700 text-xl">NOTE:</h3>
+  <h3 class="font-bold mb-3 text-white-700 text-xl">NOTE:</h3>
   <ul class="space-y-2 list-disc  ">
     <li>Pastikan nominal pembayaran sesuai dengan tagihan.</li>
     <li>Bayar uang kas tepat waktu untuk mencapai target bulanan.</li>
@@ -196,17 +272,22 @@
     <li>Jika mengalami kendala saat melakukan pembayaran, silakan hubungi admin melalui WhatsApp yang tertera di bawah ini.</li>
   </ul>
 
-  <!-- Tombol WhatsApp -->
-  <div class="mt-5">
-    <a href="https://wa.me/6287821055894?text=Halo%20Admin%2C%20saya%20ingin%20menanyakan%20tentang%20pembayaran%20kas." target="_blank" 
-       class="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-medium px-4 py-2 rounded-lg shadow transition-all duration-200">
-      <!-- Ikon WhatsApp -->
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M20.52 3.48A11.95 11.95 0 0012 0C5.37 0 0 5.37 0 12a11.9 11.9 0 001.64 6L0 24l6.28-1.64A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.21-3.48-8.52zM12 21.75a9.74 9.74 0 01-4.95-1.33l-.36-.21-3.72.97.99-3.61-.24-.37A9.77 9.77 0 012.25 12c0-5.37 4.38-9.75 9.75-9.75 2.61 0 5.07 1.02 6.91 2.88A9.67 9.67 0 0121.75 12c0 5.37-4.38 9.75-9.75 9.75z"/>
-      </svg>
-      Hubungi Admin via WhatsApp
-    </a>
-  </div>
+ <!-- Tombol WhatsApp -->
+<div class="mt-5">
+  <a href="https://wa.me/6287821055894?text=Halo%20Admin%2C%20saya%20ingin%20menanyakan%20tentang%20pembayaran%20kas." 
+     target="_blank"
+     class="inline-flex items-center gap-2 bg-slate-900/70 backdrop-blur-lg text-white font-medium px-3 py-2 rounded-lg text-sm
+            transition-all duration-300 ">
+    
+    <!-- Ikon WhatsApp -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="w-5 h-5 text-emerald-400">
+      <path d="M16 2C8.27 2 2 8.27 2 16c0 2.47.61 4.83 1.76 6.96L2 30l7.22-1.88A13.86 13.86 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.3c-2.3 0-4.54-.6-6.52-1.76l-.47-.28-4.28 1.12 1.14-4.12-.3-.48A11.28 11.28 0 0 1 4.7 16c0-6.25 5.05-11.3 11.3-11.3S27.3 9.75 27.3 16 22.25 27.3 16 27.3zM23.38 19.7c-.38-.19-2.25-1.11-2.6-1.23-.35-.13-.6-.19-.86.19-.25.38-.99 1.23-1.22 1.48-.22.25-.45.28-.83.09-.38-.19-1.6-.59-3.05-1.87a11.1 11.1 0 0 1-2.05-2.53c-.22-.38-.02-.59.17-.77.18-.18.38-.45.57-.67.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.67-.09-.19-.86-2.07-1.18-2.83-.31-.74-.63-.64-.86-.65h-.73c-.25 0-.66.09-1.01.47-.35.38-1.32 1.29-1.32 3.14 0 1.85 1.36 3.63 1.55 3.88.19.25 2.68 4.1 6.5 5.57 3.83 1.47 3.83.99 4.52.93.7-.06 2.25-.91 2.57-1.79.32-.88.32-1.63.22-1.79-.1-.16-.35-.25-.73-.44z"/>
+    </svg>
+
+    Hubungi Admin via WhatsApp
+  </a>
+</div>
+
 </section>
 
 
@@ -222,4 +303,4 @@ Dikelola bersama oleh komunitas kelas. Seluruh aktivitas dan pembayaran Anda sed
 
 <script src="asset/js/dashboard.js"></script>
 </body>
-</html>
+</html> 

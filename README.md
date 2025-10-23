@@ -11,10 +11,11 @@ Built with HTML, Tailwind CSS, and JavaScript — featuring a responsive layout 
 Features
 - QRIS payment guide  
 - Dark / Light mode toggle  
-- Fully responsive and fast loading  
+- Fully responsive
 - Background music support  
 - Mobile friendly interface  
 - Admin contact via WhatsApp  
+- Scroll animations
 
 
 

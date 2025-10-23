@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,13 +13,15 @@
   <meta property="og:url" content="https://class.nuridwn.site">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://class.nuridwn.site/assets/banner.png">
+  <script src="asset/js/script.js"></script>
   
-  <script src="https://cdn.tailwindcss.com"></script>
+<script src="asset/js/dashboard.js" type="module"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="icon" href="https://class.nuridwn.site/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  
+
   <style>
-     body {
+    body {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", monospace;
       transition: background-color 0.4s ease-in-out, color 0.4s ease-in-out;
       opacity: 0;
@@ -31,19 +32,17 @@
       to { opacity: 1; }
     }
 
-.dark-mode {
-  background-color: #0f172a;
-  color: #cbd5e1;
-  background-image: radial-gradient(circle at 20% 20%, #1e3a8a40 0%, #0f172a 70%);
-}
+    .dark-mode {
+      background-color: #0f172a;
+      color: #cbd5e1;
+      background-image: radial-gradient(circle at 20% 20%, #1e3a8a40 0%, #0f172a 70%);
+    }
 
-
-.light-mode {
-  background-color: #f1f5f9;
-  color: #334155;
-  background-image: radial-gradient(circle at 30% 30%, #e2e8f0 0%, #f8fafc 60%);
-}
-
+    .light-mode {
+      background-color: #f1f5f9;
+      color: #334155;
+      background-image: radial-gradient(circle at 30% 30%, #e2e8f0 0%, #f8fafc 60%);
+    }
     
     /* Efek Glassmorphism untuk Info Box */
     .info-box {
@@ -81,15 +80,57 @@
       background-color: rgba(30, 41, 59, 0.5);
       border: 2px solid rgba(71, 85, 105, 0.6);
     }
-    /* btn-logout {
-      position: fixed;
-      top: 1.5rem;
-      right: 1.5rem;
-      z-index: 50;
-    } */
+    
+    /* Animasi Scroll */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .scroll-animate.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Animasi untuk elemen yang masuk dari kiri */
+    .scroll-animate-left {
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .scroll-animate-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Animasi untuk elemen yang masuk dari kanan */
+    .scroll-animate-right {
+      opacity: 0;
+      transform: translateX(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .scroll-animate-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Animasi untuk elemen yang membesar */
+    .scroll-animate-scale {
+      opacity: 0;
+      transform: scale(0.9);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .scroll-animate-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
   </style>
 </head>
-<body class="dark-mode ">
+<body class="dark-mode">
 
 <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-lg bg-slate-900/70 border-b border-slate-700 shadow-md">
   <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-3">
@@ -128,179 +169,233 @@
   </div>
 </header>
 
-<script src="asset/js/script.js"></script>
 
 
-
-
-  <main class="max-w-4xl mx-auto px-6 py-12 sm:px-10 sm:py-16">
+<main class="max-w-4xl mx-auto mt-4 px-6 py-12 sm:px-10 sm:py-16">
     
-<p id="user-info" class="justify-center text-center font-bold text-2xl mt-4 p-4"></p>
+  <p id="user-info" class="justify-center text-center font-bold text-lg mt-4 p-4 z-50"></p>
     
-    <header class="text-center mb-16 bg-slate-900/70 backdrop-blur-lg info-box rounded-2xl p-2 mt-4 border-l-2 shadow-2xl">
-      <h1 class="text-4xl sm:text-5xl font-bold mb-4 ">
-        Panduan Pembayaran Uang Kas
-      </h1>
-      <p class="text-lg opacity-80 max-w-2xl mx-auto">
-        Sistem pembayaran kas kelas yang modern dan transparan kini hadir untuk memudahkan Anda.
-      </p>
-      <!-- <div id="user-info" class="font-bold text-2xl mt-4"></div> -->
-    </header>
+  <header class="text-center mb-16 bg-slate-900/70 backdrop-blur-lg info-box rounded-2xl p-2 mt-4 border-l-2 shadow-2xl scroll-animate">
+    <h1 class="text-4xl sm:text-5xl font-bold mb-4">
+      Panduan Pembayaran Uang Kas
+    </h1>
+    <p class="text-lg opacity-80 max-w-2xl mx-auto">
+      Sistem pembayaran kas kelas yang modern dan transparan kini hadir untuk memudahkan Anda.
+    </p>
+  </header>
 
-    <section class="mb-12 opacity-90">
-      <p class="mb-4">
-        Sistem pembayaran kas kelas dirancang untuk meningkatkan transparansi dan kemudahan dalam pengelolaan keuangan kelas. 
-        Anda dapat memantau kas pribadi, melihat tagihan, dan melakukan pembayaran langsung melalui website.
-      </p>
-      <p>
-        Login menggunakan NIM, akses menu Uang Kas, lalu bayar melalui QRIS. 
-        Setelah pembayaran, unggah bukti transaksi dan tunggu konfirmasi dari admin.
-      </p>
+  <section class="mb-12 opacity-90 scroll-animate">
+    <p class="mb-4">
+      Sistem pembayaran kas kelas dirancang untuk meningkatkan transparansi dan kemudahan dalam pengelolaan keuangan kelas. 
+      Anda dapat memantau kas pribadi, melihat tagihan, dan melakukan pembayaran langsung melalui website.
+    </p>
+    <p>
+      Login menggunakan NIM, akses menu Uang Kas, lalu bayar melalui QRIS. 
+      Setelah pembayaran, unggah bukti transaksi dan tunggu konfirmasi dari admin.
+    </p>
+  </section>
+
+  <hr class="border-slate-700 dark:border-slate-700 my-10">
+
+  <article class="space-y-10">
+
+    <section class="scroll-animate-left">
+      <h2 class="text-xl font-semibold mb-4">1. Login ke Website</h2>
+      <ul class="space-y-2 ml-6 list-disc opacity-90">
+        <li>Kunjungi <a href="https://class.nuridwn.site" target="_blank" class="underline hover:no-underline"></a></li>
+        <div class="mt-4 flex items-center gap-2 relative">
+          <input id="website-link" type="text" value="https://class.nuridwn.site" readonly
+            class="w-full bg-slate-600/20 border border-slate-600 rounded-lg px-3 py-1.5 text-sm truncate">
+          <button id="copy-btn"
+            class="bg-slate-900/70 backdrop-blur-lg text-white font-semibold px-3 py-1.5 rounded-lg text-sm 
+                   transition-colors duration-300 hover:bg-slate-800/90">
+            Salin
+          </button>
+
+          <!-- Pesan notifikasi -->
+          <span id="copied-text" class="absolute right-0 -bottom-6 text-xs text-green-500 opacity-0 transition-opacity duration-300">
+            Tautan telah disalin!
+          </span>
+        </div>
+        <li>Klik tombol Login</li>
+        <li>Masukkan NIM Anda untuk mengakses akun</li>
+      </ul>
+        
+      <div class="mt-4 p-4 info-box rounded-xl border-l-2 bg-slate-600 shadow-2xl">
+        <p class="text-sm font-bold">Jika belum memiliki akun, hubungi admin/bendahara untuk pendaftaran.</p>
+        <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/failedNim.png">
+          <img class="mt-4 p-2 cursor-pointer" src="asset/img/failedNim.png" alt="">
+        </a>
+      </div>
     </section>
 
-    <hr class="border-slate-700 dark:border-slate-700 my-10">
-
-    <article class="space-y-10">
-
-      <section>
-        <h2 class="text-xl font-semibold mb-4">1. Login ke Website</h2>
-        <ul class="space-y-2 ml-6 list-disc opacity-90">
-          <li>Kunjungi <a href="https://class.nuridwn.site" target="_blank" class="underline hover:no-underline"></a></li>
-          <div class="mt-4 flex items-center gap-2 relative">
-  <input id="website-link" type="text" value="https://class.nuridwn.site" readonly
-    class="w-full bg-slate-600/20 border border-slate-600 rounded-lg px-3 py-1.5 text-sm truncate">
-<button id="copy-btn"
-  class="bg-slate-900/70 backdrop-blur-lg text-white font-semibold px-3 py-1.5 rounded-lg text-sm 
-         transition-colors duration-300 hover:bg-slate-800/90">
-  Salin
-</button>
-
-  <!-- Pesan notifikasi -->
-  <span id="copied-text" class="absolute right-0 -bottom-6 text-xs text-green-500 opacity-0 transition-opacity duration-300">
-    Tautan telah disalin!
-  </span>
-</div>
-          <li>Klik tombol Login</li>
-          <li>Masukkan NIM Anda untuk mengakses akun</li>
-        </ul>
-        
-        <div class="mt-4 p-4 info-box rounded-xl border-l-2 bg-slate-600 shadow-2xl">
-          <p class="text-sm font-bold ">Jika belum memiliki akun, hubungi admin/bendahara untuk pendaftaran.</p>
-          <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/failedNim.png">
-          <img class="mt-4 p-2 cursor-pointer " src="asset/img/failedNim.png" alt="">
-          </a>
-        </div>
-      </section>
-
-      <section>
-        <h2 class="text-xl font-semibold mb-4">2. Akses Menu x Uang Kas</h2>
-        <ul class="space-y-2 ml-6 list-disc opacity-90">
-          <li>Buka Dashboard kemudian pilih menu Uang Kas</li>
-          <li>Halaman ini menampilkan:
-            <ul class="ml-6 mt-2 space-y-1 list-disc">
-              <li>Total kas yang telah dibayar</li>
-              <li>Sisa tagihan yang belum dibayar</li>
-              <li>Progress kas kelas dalam persentase</li>
-              <li>Riwayat pembayaran lengkap</li>
-            </ul>
-          </li>
-        </ul>
-        <div class="mt-4 p-4 rounded-xl info-box  bg-slate-600 border-l-2 shadow-2xl">
-          <p class="font-bold text-lg ">Dashboard Menu:</p>
-          <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/dashboardfix.webp">
+    <section class="scroll-animate-right">
+      <h2 class="text-xl font-semibold mb-4">2. Akses Menu x Uang Kas</h2>
+      <ul class="space-y-2 ml-6 list-disc opacity-90">
+        <li>Buka Dashboard kemudian pilih menu Uang Kas</li>
+        <li>Halaman ini menampilkan:
+          <ul class="ml-6 mt-2 space-y-1 list-disc">
+            <li>Total kas yang telah dibayar</li>
+            <li>Sisa tagihan yang belum dibayar</li>
+            <li>Progress kas kelas dalam persentase</li>
+            <li>Riwayat pembayaran lengkap</li>
+          </ul>
+        </li>
+      </ul>
+      <div class="mt-4 p-4 rounded-xl info-box bg-slate-600 border-l-2 shadow-2xl">
+        <p class="font-bold text-lg">Dashboard Menu:</p>
+        <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/dashboardfix.webp">
           <img class="mt-4 p-4" src="asset/img/dashboardfix.webp" alt="">
-          </a>
-        </div>
-      </section>
+        </a>
+      </div>
+    </section>
 
-      <section>
-        <h2 class="text-xl font-semibold mb-4">3. Pembayaran Melalui QRIS</h2>
-        <ul class="space-y-2 ml-6 list-disc opacity-90">
-          <li>Scroll ke bagian Poster Pembayaran Kas</li>
-          <li>Scan kode QRIS menggunakan aplikasi e-wallet atau mobile banking</li>
-          <li>Pastikan nominal pembayaran sesuai dengan jumlah kas yang akan dibayar</li>
-          <li>Simpan bukti transaksi setelah pembayaran berhasil</li>
-        </ul>
-        <div class="mt-2 text-xli info-box p-4 rounded-xl bg-slate-600 border-l-2 shadow-2xl">
-          <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/qris.png">
+    <section class="scroll-animate-left">
+      <h2 class="text-xl font-semibold mb-4">3. Pembayaran Melalui QRIS</h2>
+      <ul class="space-y-2 ml-6 list-disc opacity-90">
+        <li>Scroll ke bagian Poster Pembayaran Kas</li>
+        <li>Scan kode QRIS menggunakan aplikasi e-wallet atau mobile banking</li>
+        <li>Pastikan nominal pembayaran sesuai dengan jumlah kas yang akan dibayar</li>
+        <li>Simpan bukti transaksi setelah pembayaran berhasil</li>
+      </ul>
+      <div class="mt-2 text-xli info-box p-4 rounded-xl bg-slate-600 border-l-2 shadow-2xl">
+        <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/qris.png">
           <img src="asset/img/qris.png" alt="Qris">
-          </a>
-        </div>
-      </section>
+        </a>
+      </div>
+    </section>
 
-      <section>
-        <h2 class="text-xl font-semibold mb-4 ">4. Unggah Bukti Pembayaran</h2>
-        <ul class="space-y-2 ml-6 list-disc opacity-90">
-          <li>Isi formulir Kirim Bukti Pembayaran dengan informasi berikut:
-            <ul class="ml-6 mt-2 space-y-1 list-disc">
-              <li>Nominal pembayaran</li>
-              <li>Tanggal pembayaran</li>
-              <li>Metode pembayaran (Transfer/Tunai)</li>
-            </ul>
-          </li>
-          <li>Pilih file bukti transfer kemudian klik Upload</li>
-          <li>Tekan tombol Kirim Bukti Pembayaran</li>
-          <li>Status awal akan pending tunggu konfirmasi admin </li>
-        </ul>
-         <div class="mt-2 text-xli info-box p-4 rounded-xl bg-slate-600 border-l-2 shadow-2xl">
-          <p>Before:</p>
-          <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/qris.png">
+    <section class="scroll-animate-right">
+      <h2 class="text-xl font-semibold mb-4">4. Unggah Bukti Pembayaran</h2>
+      <ul class="space-y-2 ml-6 list-disc opacity-90">
+        <li>Isi formulir Kirim Bukti Pembayaran dengan informasi berikut:
+          <ul class="ml-6 mt-2 space-y-1 list-disc">
+            <li>Nominal pembayaran</li>
+            <li>Tanggal pembayaran</li>
+            <li>Metode pembayaran (Transfer/Tunai)</li>
+          </ul>
+        </li>
+        <li>Pilih file bukti transfer kemudian klik Upload</li>
+        <li>Tekan tombol Kirim Bukti Pembayaran</li>
+        <li>Status awal akan pending tunggu konfirmasi admin</li>
+      </ul>
+      <div class="mt-2 text-xli info-box p-4 rounded-xl bg-slate-600 border-l-2 shadow-2xl">
+        <p>Before:</p>
+        <a href="https://raw.githubusercontent.com/DimasAkbarF/image-panduan/main/qris.png">
           <img src="asset/img/bukti.png" alt="Qris">
-          </a>
-          <div class="mt-4 info-box rounded-xl bg-slate-700 ">
-            <p>After:</p>
+        </a>
+        <div class="mt-4 info-box rounded-xl bg-slate-700">
+          <p>After:</p>
           <a href="">
             <img src="asset/img/afterbukti.png" alt="">
           </a>
-          </div>
-      </section>
+        </div>
+      </div>
+    </section>
 
-      <section>
-        <h2 class="text-xl font-semibold mb-4">5. Konfirmasi dari Admin</h2>
-        <p class="opacity-90">
-          Setelah bukti pembayaran dikirim, admin akan melakukan verifikasi. 
-          Status pembayaran akan diperbarui secara otomatis setelah dikonfirmasi.
-        </p>
-      </section>
+    <section class="scroll-animate">
+      <h2 class="text-xl font-semibold mb-4">5. Konfirmasi dari Admin</h2>
+      <p class="opacity-90">
+        Setelah bukti pembayaran dikirim, admin akan melakukan verifikasi. 
+        Status pembayaran akan diperbarui secara otomatis setelah dikonfirmasi.
+      </p>
+    </section>
 
-<section class="p-6 info-box rounded-lg border-l-2 bg-slate-700 shadow-2xl mt-10">
-  <h3 class="font-bold mb-3 text-white-700 text-xl">NOTE:</h3>
-  <ul class="space-y-2 list-disc  ">
-    <li>Pastikan nominal pembayaran sesuai dengan tagihan.</li>
-    <li>Bayar uang kas tepat waktu untuk mencapai target bulanan.</li>
-    <li>Hubungi admin jika mengalami kendala atau data tidak terupdate.</li>
-    <li>Jika mengalami kendala saat melakukan pembayaran, silakan hubungi admin melalui WhatsApp yang tertera di bawah ini.</li>
-  </ul>
+    <section class="p-6 info-box rounded-lg border-l-2 bg-slate-700 shadow-2xl mt-10 scroll-animate-scale">
+      <h3 class="font-bold mb-3 text-white-700 text-xl">NOTE:</h3>
+      <ul class="space-y-2 list-disc">
+        <li>Pastikan nominal pembayaran sesuai dengan tagihan.</li>
+        <li>Bayar uang kas tepat waktu untuk mencapai target bulanan.</li>
+        <li>Hubungi admin jika mengalami kendala atau data tidak terupdate.</li>
+        <li>Jika mengalami kendala saat melakukan pembayaran, silakan hubungi admin melalui WhatsApp yang tertera di bawah ini.</li>
+      </ul>
 
- <!-- Tombol WhatsApp -->
-<div class="mt-5">
-  <a href="https://wa.me/6287821055894?text=Halo%20Admin%2C%20saya%20ingin%20menanyakan%20tentang%20pembayaran%20kas." 
-     target="_blank"
-     class="inline-flex items-center gap-2 bg-slate-900/70 backdrop-blur-lg text-white font-medium px-3 py-2 rounded-lg text-sm
-            transition-all duration-300 ">
-    
-    <!-- Ikon WhatsApp -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="w-5 h-5 text-emerald-400">
-      <path d="M16 2C8.27 2 2 8.27 2 16c0 2.47.61 4.83 1.76 6.96L2 30l7.22-1.88A13.86 13.86 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.3c-2.3 0-4.54-.6-6.52-1.76l-.47-.28-4.28 1.12 1.14-4.12-.3-.48A11.28 11.28 0 0 1 4.7 16c0-6.25 5.05-11.3 11.3-11.3S27.3 9.75 27.3 16 22.25 27.3 16 27.3zM23.38 19.7c-.38-.19-2.25-1.11-2.6-1.23-.35-.13-.6-.19-.86.19-.25.38-.99 1.23-1.22 1.48-.22.25-.45.28-.83.09-.38-.19-1.6-.59-3.05-1.87a11.1 11.1 0 0 1-2.05-2.53c-.22-.38-.02-.59.17-.77.18-.18.38-.45.57-.67.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.67-.09-.19-.86-2.07-1.18-2.83-.31-.74-.63-.64-.86-.65h-.73c-.25 0-.66.09-1.01.47-.35.38-1.32 1.29-1.32 3.14 0 1.85 1.36 3.63 1.55 3.88.19.25 2.68 4.1 6.5 5.57 3.83 1.47 3.83.99 4.52.93.7-.06 2.25-.91 2.57-1.79.32-.88.32-1.63.22-1.79-.1-.16-.35-.25-.73-.44z"/>
-    </svg>
+      <!-- Tombol WhatsApp -->
+      <div class="mt-5">
+        <a href="https://wa.me/6287821055894?text=Halo%20Admin%2C%20saya%20ingin%20menanyakan%20tentang%20pembayaran%20kas." 
+           target="_blank"
+           class="inline-flex items-center gap-2 bg-slate-900/70 backdrop-blur-lg text-white font-medium px-3 py-2 rounded-lg text-sm
+                  transition-all duration-300">
+          
+          <!-- Ikon WhatsApp -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor" class="w-5 h-5 text-emerald-400">
+            <path d="M16 2C8.27 2 2 8.27 2 16c0 2.47.61 4.83 1.76 6.96L2 30l7.22-1.88A13.86 13.86 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.3c-2.3 0-4.54-.6-6.52-1.76l-.47-.28-4.28 1.12 1.14-4.12-.3-.48A11.28 11.28 0 0 1 4.7 16c0-6.25 5.05-11.3 11.3-11.3S27.3 9.75 27.3 16 22.25 27.3 16 27.3zM23.38 19.7c-.38-.19-2.25-1.11-2.6-1.23-.35-.13-.6-.19-.86.19-.25.38-.99 1.23-1.22 1.48-.22.25-.45.28-.83.09-.38-.19-1.6-.59-3.05-1.87a11.1 11.1 0 0 1-2.05-2.53c-.22-.38-.02-.59.17-.77.18-.18.38-.45.57-.67.19-.22.25-.38.38-.63.13-.25.06-.47-.03-.67-.09-.19-.86-2.07-1.18-2.83-.31-.74-.63-.64-.86-.65h-.73c-.25 0-.66.09-1.01.47-.35.38-1.32 1.29-1.32 3.14 0 1.85 1.36 3.63 1.55 3.88.19.25 2.68 4.1 6.5 5.57 3.83 1.47 3.83.99 4.52.93.7-.06 2.25-.91 2.57-1.79.32-.88.32-1.63.22-1.79-.1-.16-.35-.25-.73-.44z"/>
+          </svg>
 
-    Hubungi Admin via WhatsApp
-  </a>
+          Hubungi Admin via WhatsApp
+        </a>
+      </div>
+    </section>
+  </article>
+
+  <footer class="text-center font-bold text-sm opacity-60 mt-16 scroll-animate">
+    © 2025 Class Manager.
+    <p>
+      Dikelola bersama oleh komunitas kelas. Seluruh aktivitas dan pembayaran Anda sedang diawasi oleh bendahara kelas untuk menjaga ketertiban serta memastikan transparansi keuangan.
+    </p>
+  </footer>
+</main>
+<!-- Skeleton loader for LCP content -->
+<div id="user-content">
+    <div class="skeleton-loader">
+        <div class="skeleton-avatar"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text short"></div>
+    </div>
 </div>
+<script>
+  // Script untuk animasi scroll
+  document.addEventListener('DOMContentLoaded', function() {
+    // Elemen yang akan diamati
+    const animatedElements = document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right, .scroll-animate-scale');
+    
+    // Opsi untuk Intersection Observer
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.1
+    };
+    
+    // Callback untuk Intersection Observer
+    const observerCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Opsional: Hentikan observasi setelah elemen terlihat
+          // observer.unobserve(entry.target);
+        }
+      });
+    };
+    
+    // Buat observer
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    // Amati setiap elemen
+    animatedElements.forEach(element => {
+      observer.observe(element);
+    });
+    
+    // Script untuk tombol salin tautan
+    const copyBtn = document.getElementById('copy-btn');
+    const websiteLink = document.getElementById('website-link');
+    const copiedText = document.getElementById('copied-text');
+    
+    if (copyBtn) {
+      copyBtn.addEventListener('click', function() {
+        websiteLink.select();
+        document.execCommand('copy');
+        
+        // Tampilkan pesan berhasil
+        copiedText.style.opacity = '1';
+        
+        // Sembunyikan pesan setelah 2 detik
+        setTimeout(function() {
+          copiedText.style.opacity = '0';
+        }, 2000);
+      });
+    }
+  });
+</script>
 
-</section>
-
-
-    </article>
-
-    <footer class="text-center font-bold text-sm opacity-60 mt-16">
-      © 2025 Class Manager.
-      <p>
-Dikelola bersama oleh komunitas kelas. Seluruh aktivitas dan pembayaran Anda sedang diawasi oleh bendahara kelas untuk menjaga ketertiban serta memastikan transparansi keuangan.</p>
-    </footer>
-
-  </main>
-
-<script src="asset/js/dashboard.js"></script>
 </body>
-</html> 
+</html>
